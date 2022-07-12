@@ -13,7 +13,7 @@ class PostsTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i=0; $i < 5; $i++) { 
+        for ($i=0; $i < 25; $i++) { 
             $new_post = new Post();
             $new_post->title = $faker->sentence();
             $new_post->slug = Post::generateSlug($new_post->title);
