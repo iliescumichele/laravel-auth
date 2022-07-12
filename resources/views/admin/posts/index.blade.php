@@ -2,7 +2,9 @@
 
 @section('content')
 <div class="container">
-    <h1>Rotta index della CRUD </h1>
+    <h1>Rotta INDEX della CRUD </h1>
+    
+    <a class="btn btn-outline-dark  mb-4 mt-3" href="{{ route('admin.posts.create') }}">Crea nuovo post</a>
 
     <table class="table table-hover">
         <thead>

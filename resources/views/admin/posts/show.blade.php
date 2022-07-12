@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container ">
-    <h1 class="">Rotta show della CRUD </h1>
+    <h1 class="">Rotta SHOW della CRUD </h1>
     <a href="{{ route('admin.posts.index') }}">&#60&#60 Go back</a>
 
     <div class="d-flex justify-content-center my-5">
