@@ -18,12 +18,16 @@
                 <tr>
                     <th scope="row">{{ $item->id}}</th>
                     <td>{{ $item->title}}</td>
-                    <td>bottoni</td>
+                    <td>
+                        <a class="btn btn-info" href="{{ route('admin.posts.show', $item) }}">SHOW</a>
+                    </td>
                 </tr>
-                
             @endforeach
 
         </tbody>
-      </table>
+    </table>
+
+    {{ $posts->links() }}
+      
 </div>
 @endsection
