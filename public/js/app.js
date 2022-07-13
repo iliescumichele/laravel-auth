@@ -49354,7 +49354,23 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 
 var app = new Vue({
   el: '#app'
+}); //quando tutto è pronto lancia la funzione di callback
+
+/* 
+$().ready( function(){
+    //qui va JQuery
+
+    $('form').submit( function(event){
+        $('#error-title').hide();
+
+        if( $('#title').val().length === 0 ){
+            $('#error-title').show('fast').text('Il titolo è un campo obbligatorio').fadeOut(3000);
+        }
+        
+        event.preventDefault();
+    });
 });
+*/
 
 /***/ }),
 

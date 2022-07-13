@@ -31,7 +31,8 @@
                     class="form-control @error('title') is-invalid @enderror">
                 @error('title')
                     <p class="text-danger">{{ $message }}</p>
-                @enderror
+                    @enderror
+                    <p class="text-danger" id="error-title"></p>
             </div>
             <div class="mb-3">
                 <label  class="form-label" for="content">

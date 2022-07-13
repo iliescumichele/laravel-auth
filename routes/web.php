@@ -23,7 +23,7 @@ Auth::routes();
 Route::middleware('auth') 
     ->name('admin.')
     ->prefix('admin')
-    ->namespace('Admin')
+    ->namespace('admin')
     ->group( function(){
         //rotte protette
        Route::get('/', 'HomeController@index')->name('home');

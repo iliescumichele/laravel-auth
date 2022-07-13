@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Post;
 
 class PostController extends Controller
@@ -57,7 +58,10 @@ class PostController extends Controller
     public function show($id)
     {
         $item = Post::find($id);
-        return view('admin.posts.show', compact('item'));
+        if($item){
+            return view('admin.posts.show', compact('item'));
+        }
+        abort(404, 'Prodotto non presente');
     }
 
     /**
@@ -68,7 +72,11 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Post::find($id);
+        if($item){
+            return view('admin.posts.edit', compact('item'));
+        }
+        abort(404, 'Prodotto non presente');
     }
 
     /**
@@ -78,9 +86,20 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        //$post = Post::find($id);
+        $data = $request -> all();
+
+        if( $post->title != $data['title'] ){
+            $data['slug'] = $this->generateSlug($data['title']);
+        } else {
+            $data['title'] = $post->slug;
+        }
+        
+        $post -> update($data);
+
+        return redirect() -> route('admin.posts.show', $post);
     }
 
     /**
@@ -89,8 +108,20 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $item)
     {
         //
+    }
+
+
+    private function generateSlug($string){
+        $slug = Str::slug( $string , '-' );
+        $control_slug = Post::where('slug', $slug) -> first();
+
+        if($control_slug){
+            $slug = $control_slug -> slug . '-';
+        };
+
+        return $slug;
     }
 }
