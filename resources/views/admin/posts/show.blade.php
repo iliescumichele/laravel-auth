@@ -16,5 +16,14 @@
             <p>{{ $item->content }}</p>
         </div>
     </div>
+
+    <form class=" d-inline d-flex justify-content-center" 
+            action="{{ route('admin.posts.destroy', $item) }}"
+            method="POST"
+            onsubmit="return confirm('Confermi l\eliminazione di: {{ $item->title }}')">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">DESTROY</button>
+    </form>
 </div>
 @endsection

@@ -2,6 +2,13 @@
 
 @section('content')
 <div class="container">
+
+    @if ( session( 'popUp' ) )    
+        <div class="alert alert-success" role="alert">
+            {{ session( 'popUp' ) }}
+        </div>
+    @endif
+
     <h1>Rotta INDEX della CRUD </h1>
     
     <a class="btn btn-outline-dark  mb-4 mt-3" href="{{ route('admin.posts.create') }}">Crea nuovo post</a>
@@ -23,7 +30,10 @@
                     <td>
                         <a class="btn btn-info" href="{{ route('admin.posts.show', $item) }}">SHOW</a>
                         <a class="btn btn-warning" href="{{ route('admin.posts.edit', $item) }}">EDIT</a>
-                        <form class=" d-inline" action="{{ route('admin.posts.destroy', $item) }}">
+                        <form class=" d-inline" 
+                            action="{{ route('admin.posts.destroy', $item) }}"
+                            method="POST"
+                            onsubmit="return confirm('Confermi l\eliminazione di: {{ $item->title }}')">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">DESTROY</button>
