@@ -22,6 +22,8 @@
                     <td>{{ $item->title}}</td>
                     <td>
                         <a class="btn btn-info" href="{{ route('admin.posts.show', $item) }}">SHOW</a>
+                        <a class="btn btn-warning" href="{{ route('admin.posts.edit', $item) }}">EDIT</a>
+                        <a class="btn btn-danger" href="{{ route('admin.posts.destroy', $item) }}">DESTROY</a>
                     </td>
                 </tr>
             @endforeach
